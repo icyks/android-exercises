@@ -1,9 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Library">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LibraryActivity">
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/pink"
+        android:text="@string/right_text"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="15dp"
+        android:layout_margin="@dimen/fab_margin"
+        />
+
+
+    <TextView
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:text="@string/left_text"
+        android:padding="15dp"
+        android:layout_margin="@dimen/fab_margin"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple"
+        android:text="@string/below_left_text"
+        app:layout_constraintTop_toBottomOf="@id/left"
+        android:padding="15dp"
+        android:layout_margin="@dimen/fab_margin"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/deep_purple"
+        android:text="@string/center_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="15dp"
+        android:layout_margin="@dimen/fab_margin"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/indigo"
+        android:text="@string/bottom_center_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/bottomcenter"
+        android:padding="15dp"
+        android:layout_margin="@dimen/fab_margin"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:text="@string/above_bottom_center_text"
+        app:layout_constraintBottom_toTopOf="@id/bottomcenter"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="15dp"
+        android:layout_margin="@dimen/fab_margin"
+        />
+
+
+</android.support.constraint.ConstraintLayout>
