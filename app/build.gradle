@@ -27,6 +27,8 @@ android {
 
 dependencies {
     testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:2.+"
+    testCompile 'org.assertj:assertj-core:3.8.0'
 
     def support_version = "26.0.1"
 
@@ -35,6 +37,7 @@ dependencies {
             "com.android.support:design:$support_version",
             "com.android.support:support-annotations:$support_version"
     )
+
 
     // TODO add testCompile JUnit
 
