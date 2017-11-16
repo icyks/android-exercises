@@ -2,8 +2,12 @@ package fr.android.androidexercises;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -13,43 +17,24 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-public class LibraryActivity extends AppCompatActivity {
+public class LibraryActivity extends AppCompatActivity implements ListBookFragment.OnNextListBookListener{
+
+    private List<Book> books = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.containerFrameLayout,new ListBookFragment(),ListBookFragment.class.getSimpleName())
+                .addToBackStack("ListBookFragment")
+                .commit();
+    }
 
-        // Plant logger cf. Android Timber
-        Timber.plant(new Timber.DebugTree());
+    @Override
+    public void onNext() {
+        // TODO replace Step1Fragment in containerFrameLayout
 
-        // TODO build Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://henri-potier.xebia.fr/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        // TODO create a service
-        HenriPotierService service = retrofit.create(HenriPotierService.class);
-        // TODO listBooks()
-        Call<List<Book>> call = service.listBooks();
-        call.enqueue(new Callback<List<Book>>() {
-            @Override
-            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
-                for (Book book : response.body()){
-                    Log.d("lol",book.getTitle());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Book>> call, Throwable t) {
-
-            }
-        });
-        // TODO enqueue call and display book title
-
-        // TODO log books
-
-        // TODO display book as a list
     }
 
 }
