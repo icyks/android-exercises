@@ -1,11 +1,14 @@
 package fr.android.androidexercises;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
 
     private String isbn;
     private String title;
     private String price;
     private String cover;
+    private String[] synopsis;
 
     public String getIsbn() {
         return isbn;
@@ -39,6 +42,13 @@ public class Book {
         this.cover = cover;
     }
 
+    public String[] getSynopsis(){
+        return synopsis;
+    }
+
+    public void setSynopsis(String[] synopsis){
+        this.synopsis=synopsis;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

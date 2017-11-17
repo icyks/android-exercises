@@ -10,7 +10,6 @@ import java.util.List;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,26 +24,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ListBookFragment extends Fragment{
-    private List<Book> books = new ArrayList<>();
-    private OnNextListBookListener listener;
+    private List<Book> books;
+    private OnClickBookListener listener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        listener = (OnNextListBookListener) context;
+        listener = (OnClickBookListener) context;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_list_book, container, false);
-
+        this.books = new ArrayList<>();
         RecyclerView recycledView = (RecyclerView) rootView.findViewById(R.id.bookListView);
         recycledView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-        final BookAdaptater bookAdaptater = new BookAdaptater(LayoutInflater.from(rootView.getContext()),books);
+        final BookAdaptater bookAdaptater = new BookAdaptater(LayoutInflater.from(rootView.getContext()),books, listener );
         recycledView.setAdapter(bookAdaptater);
         retrofitTreatment(bookAdaptater,"http://henri-potier.xebia.fr/");
-
         return rootView;
     }
 
@@ -71,7 +69,7 @@ public class ListBookFragment extends Fragment{
         });
     }
 
-    public interface OnNextListBookListener {
-        void onNext();
+    public interface OnClickBookListener {
+        void onClick(Book book);
     }
 }

@@ -1,23 +1,16 @@
 package fr.android.androidexercises;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import timber.log.Timber;
-
-public class LibraryActivity extends AppCompatActivity implements ListBookFragment.OnNextListBookListener{
+public class LibraryActivity extends AppCompatActivity implements ListBookFragment.OnClickBookListener {
 
     private List<Book> books = new ArrayList<>();
 
@@ -25,16 +18,24 @@ public class LibraryActivity extends AppCompatActivity implements ListBookFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.containerFrameLayout,new ListBookFragment(),ListBookFragment.class.getSimpleName())
-                .addToBackStack("ListBookFragment")
+            getSupportFragmentManager().beginTransaction()
+                .replace(isPortrait() ? R.id.containerFrameLayout : R.id.containerLeftFrameLayout,new ListBookFragment(),ListBookFragment.class.getSimpleName())
+                .addToBackStack(null)
                 .commit();
     }
 
+
     @Override
-    public void onNext() {
-        // TODO replace Step1Fragment in containerFrameLayout
+    public void onClick(Book book) {
+        getIntent().putExtra(BookDescriptionFragment.KEYBOOK,book);
+        getSupportFragmentManager().beginTransaction()
+                .replace(isPortrait() ? R.id.containerFrameLayout : R.id.containerRightFrameLayout,new BookDescriptionFragment(),BookDescriptionFragment.class.getSimpleName())
+                .addToBackStack("BookDescriptionFragment")
+                .commit();
+     }
 
-    }
+     private boolean isPortrait(){
+        return this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? true : false;
 
+     }
 }

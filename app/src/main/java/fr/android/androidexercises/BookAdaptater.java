@@ -14,11 +14,13 @@ import java.util.List;
 public class BookAdaptater extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<Book> books;
     private final LayoutInflater mLayoutInflater;
+    private final ListBookFragment.OnClickBookListener listener;
 
 
-    public BookAdaptater(LayoutInflater mLayoutInflater, List<Book> books){
+    public BookAdaptater(LayoutInflater mLayoutInflater, List<Book> books,ListBookFragment.OnClickBookListener listener){
         this.books=books;
         this.mLayoutInflater=mLayoutInflater;
+        this.listener=listener;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class BookAdaptater extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position){
-        ((BookItemView)holder.itemView).bindView(books.get(position));
+        ((BookItemView)holder.itemView).bindView(books.get(position),listener);
     }
 
     @Override
@@ -41,8 +43,10 @@ public class BookAdaptater extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return books.size();
     }
 
-    public void setBooks(List<Book> books){
-        this.books=books;
+
+    public void setBooks(List<Book> books)
+    {
+        this.books = books;
         notifyDataSetChanged();
     }
 
