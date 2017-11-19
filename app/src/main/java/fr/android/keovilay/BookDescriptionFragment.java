@@ -1,4 +1,4 @@
-package fr.android.androidexercises;
+package fr.android.keovilay;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,7 +27,7 @@ public class BookDescriptionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_description_book, container, false);
         imageView = view.findViewById(R.id.bookDescriptionImageView);
         textView = view.findViewById(R.id.descriptionTextView);
-        book = (Book) getActivity().getIntent().getSerializableExtra(KEYBOOK);
+        book = (Book) getActivity().getIntent().getParcelableExtra(KEYBOOK);
         return view;
     }
 

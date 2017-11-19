@@ -1,4 +1,4 @@
-package fr.android.androidexercises;
+package fr.android.keovilay;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

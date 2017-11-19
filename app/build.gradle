@@ -9,7 +9,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "fr.android.androidexercises"
+        applicationId "fr.android.keovilay"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1

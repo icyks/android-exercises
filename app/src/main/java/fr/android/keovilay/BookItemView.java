@@ -1,4 +1,4 @@
-package fr.android.androidexercises;
+package fr.android.keovilay;
 
 import android.content.Context;
 import android.util.AttributeSet;
